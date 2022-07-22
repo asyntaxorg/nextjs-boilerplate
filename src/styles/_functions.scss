@@ -1,0 +1,132 @@
+@function opaque($background, $foreground) {
+	@return mix(rgba($foreground, 1), $background, opacity($foreground) * 100);
+}
+
+// TINT A COLOR BY MIXING IT WITH WHITE
+// TODO: THIS SHOULD BE CALLED lighten
+@function tint($color, $weight) {
+	@return mix($white-color, $color, $weight);
+}
+
+// SHADE A COLOR BY MIXING IT WITH BLACK
+// TODO: THIS SHOULD BE CALLED darken
+@function shade($color, $weight) {
+	@return mix($black-color, $color, $weight);
+}
+
+// GET A NESTED KEY
+@function map-deep-get($map, $keys...) {
+	@each $key in $keys {
+		$map: map-get($map, $key);
+	}
+
+	@return $map;
+}
+
+// UPDATE A NESTED KEY
+@function map-deep-set($map, $keys.../*, $value */) {
+	$map-list: ($map,);
+	$result: null;
+
+	@if length($keys) == 2 {
+		@return map-merge($map, (nth($keys, 1): nth($keys, -1)));
+	}
+
+	@for $i from 1 through length($keys) - 2 {
+		$map-list: append($map-list, map-get(nth($map-list, -1), nth($keys, $i)));
+	}
+
+	@for $i from length($map-list) through 1 {
+		$result: map-merge(nth($map-list, $i), (nth($keys, $i): if($i == length($map-list), nth($keys, -1), $result)));
+	}
+
+	@return $result;
+}
+
+// COMPUTE MAX DEPTH OF A MAP
+@function map-depth($map) {
+	$level: 1;
+
+	@each $key, $value in $map {
+		@if type-of($value) == 'map' {
+			$level: max(map-depth($value) + 1, $level);
+		}
+	}
+
+	@return $level;
+}
+
+// TO DETERMINE IF A MAP HAS ALL $keys AT FIRST LEVEL
+@function map-has-keys($map, $keys...) {
+	@each $key in $keys {
+		@if not map-has-key($map, $key) {
+			@return false;
+		}
+	}
+
+	@return true;
+}
+
+// TO DETERMINE IF A MAP HAS ALL NESTED $keys UNDER A $key
+@function map-deep-has-keys($map, $keys...) {
+	@each $key in $keys {
+		@if not map-has-key($map, $key) {
+			@return false;
+		}
+		$map: map-get($map, $key);
+	}
+
+	@return true;
+}
+
+// AN EQUIVALENT OF zip() FUNCTION BUT FOR MAPS
+@function map-zip($keys, $values) {
+	$l-keys: length($keys);
+	$l-values: length($values);
+	$min: min($l-keys, $l-values);
+	$map: ();
+
+	@if $l-keys != $l-values {
+		@warn 'There are #{$l-keys} key(s) for #{$l-values} value(s) in the map for `map-zip`. '
+	+ 'Resulting map will only have #{$min} pairs.';
+	}
+
+	@if $min == 0 {
+		@return $map;
+	}
+
+	@for $i from 1 through $min {
+		$map: map-merge($map, (nth($keys, $i): nth($values, $i)));
+	}
+
+	@return $map;
+}
+
+// COLOR PALETTE GENERATOR
+@function palette($color) {
+	$total: 9;
+	$variants: ();
+
+	@for $i from 1 through $total {
+		@if $i <= 4 {
+			$key: $i * 100;
+			$percent: 30% - $i * 5%;
+			$variants: map-deep-set($variants, $key, tint($color, $percent));
+		}
+		@if $i == 5 {
+			$variants: map-deep-set($variants, 500, $color);
+		}
+		@if $i >= 6 {
+			$key: $i * 100;
+			$percent: $i * 5% - 20%;
+			$variants: map-deep-set($variants, $key, shade($color, $percent));
+		}
+	}
+
+	@return $variants;
+}
+
+// COLOR OPACITY
+@function color-opacity($color, $opacity) {
+	@return rgba($color, $opacity);
+}

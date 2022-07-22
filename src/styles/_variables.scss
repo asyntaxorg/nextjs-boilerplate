@@ -1,0 +1,111 @@
+@import 'functions';
+
+// DENSITY INDEPENDENT PIXEL
+$dp: 0.8rem;
+
+// CONTAINER
+$container-x-padding: calc($dp * 2);
+
+// BREAKPOINTS
+$xxs-breakpoint: 360px;		// MIN: 0		MAX: (XXS - 1px)
+$xs-breakpoint: 480px;		// MIN: XXS		MAX: (XS - 1px)
+$sm-breakpoint: 600px;		// MIN: XS		MAX: (SM - 1px)
+$md-breakpoint: 960px;		// MIN: SM		MAX: (MD - 1px)
+$lg-breakpoint: 1280px;		// MIN: MD		MAX: (LG - 1px)
+$xl-breakpoint: 1440px;		// MIN: LG		MAX: (XL - 1px)
+$xxl-breakpoint: 1920px;	// MIN: XL
+
+$breakpoints: (
+	xxs: (
+		min: null,
+		max: $xxs-breakpoint - 1px,
+	),
+	xs: (
+		min: $xxs-breakpoint,
+		max: $xs-breakpoint - 1px,
+	),
+	sm: (
+		min: $xs-breakpoint,
+		max: $sm-breakpoint - 1px,
+	),
+	md: (
+		min: $sm-breakpoint,
+		max: $md-breakpoint - 1px,
+	),
+	lg: (
+		min: $md-breakpoint,
+		max: $lg-breakpoint - 1px,
+	),
+	xl: (
+		min: $lg-breakpoint,
+		max: $xl-breakpoint - 1px,
+	),
+	xxl: (
+		min: $xl-breakpoint,
+		max: null,
+	)
+);
+
+// COLORS
+$black-color: rgb(0, 0, 0);
+$white-color: rgb(255, 255, 255);
+
+$dark-color: palette(rgb(0, 0, 0));
+$light-color: palette(rgb(255, 255, 255));
+$primary-color: palette(rgb(34, 0, 170));
+$secondary-color: palette(rgb(136, 136, 153));
+
+$error-color: palette(rgb(220, 35, 50));
+$warning-color: palette(rgb(250, 190, 10));
+$success-color: palette(rgb(30, 150, 80));
+$info-color: palette(rgb(150, 230, 235));
+
+$neutral-color: palette(rgb(230, 230, 240));
+
+
+$base-font-size: 10px;
+// $base-font-family: "Source Sans Pro";
+$base-font-family: "Poppins";
+$base-line-height: 100%;
+
+// BODY
+$body-font-size: 1.6rem;
+$body-line-height: 2rem;
+$body-color: $black-color;
+
+// BUTTON
+$button-background-color: transparent;
+$button-color: $black-color;
+$button-font-weight: 500;
+$button-border-color: transparent;
+$button-border-radius: calc($dp * 16);
+$button-border-style: solid;
+$button-border-width: 0;
+$button-height: $dp * 6;
+$button-width: auto;
+// $button-x-padding: $dp;
+
+// BUTTON MODIFIERS
+$disabled--button-opacity: 0.5;
+
+$md--button-font-size: 1.6rem;
+$md--button-height: $dp * 6;
+$md--button-x-padding: $dp * 3;
+
+$lg--button-font-size: 2.2rem;
+$lg--button-height: $dp * 10;
+$lg--button-x-padding: $dp * 5;
+
+// PARAGRAPH
+$p-font-size: $body-font-size;
+$p-line-height: $body-line-height;
+
+// HEADING
+$h1-font-size: 9.6rem;
+$h2-font-size: 7.2rem;
+$h3-font-size: 4.8rem;
+$h4-font-size: 3.2rem;
+$h5-font-size: 2.4rem;
+$h6-font-size: 2rem;
+
+$h-line-height: 1.2;

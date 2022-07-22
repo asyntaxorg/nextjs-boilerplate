@@ -1,0 +1,73 @@
+@import 'variables';
+
+$font-dir: '';
+
+@if $base-font-family == 'Poppins' {
+	$font-dir: 'poppins';
+}
+@if $base-font-family == 'Source Sans Pro' {
+	$font-dir: 'source-sans-pro';
+}
+
+@import url(@/public/static/fonts/#{$font-dir}/style.css);
+
+html {
+	font-size: $base-font-size;
+	&, body {
+		min-height: 100vh;
+	}
+	body {
+		font-size: $body-font-size;
+		line-height: $body-line-height;
+		color: $body-color;
+		margin: 0;
+		padding: 0;
+		&, & * {
+			font-family: $base-font-family, sans-serif;
+			&, &::before, &::after {
+				box-sizing: border-box;
+			}
+		}
+		&, & > div {
+			min-height: 100vh;
+		}
+		.root {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+			min-height: 100vh;
+			height: auto;
+		}
+	}
+}
+
+// DISABLE TOUCH HIGHLIGHT ON CLICKABLE OBJECTS
+button,
+textarea,
+input,
+select,
+a {
+	--webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+	--webkit-tap-highlight-color: transparent;
+	--webkit-user-select: none;
+	--khtml-user-select: none;
+	--moz-user-select: none;
+	--ms-user-select: none;
+	user-select: none;
+}
+
+/* HEADING */
+h1, .h1,
+h2, .h2,
+h3, .h3,
+h4, .h4,
+h5, .h5,
+h6, .h6 {
+	line-height: $h-line-height;
+}
+
+/* PARAGRAPH */
+p {
+	font-size: $p-font-size;
+	line-height: $p-line-height;
+}

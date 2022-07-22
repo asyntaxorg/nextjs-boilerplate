@@ -1,7 +1,12 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {
-  reactStrictMode: true,
-  swcMinify: true,
-}
 
-module.exports = nextConfig
+module.exports = {
+	// async exportPathMap() {
+	// 	return {
+	// 		'/': { page: '/' },
+	// 	};
+	// },
+	reactStrictMode: true,
+	swcMinify: true,
+	trailingSlash: true,
+};
