@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import type { ChildrenType } from '@types';
 import React from 'react';
 import Template from '@templates/Default';
@@ -12,21 +13,20 @@ const Home: React.FC<Props> = ({
 	const text = 'Home View';
 
 	return (
-		<div>
-			{text}
-			{children}
-			<Template>
-				<Template.Header>
-					Header Region
-				</Template.Header>
-				<Template.Main>
-					Main Region
-				</Template.Main>
-				<Template.Footer>
-					Footer Region
-				</Template.Footer>
-			</Template>
-		</div>
+		<Template>
+			<Template.Header>
+				Header Region
+			</Template.Header>
+			<Template.Aside>
+				Aside Region
+			</Template.Aside>
+			<Template.Main>
+				Main Region
+			</Template.Main>
+			<Template.Footer>
+				Footer Region
+			</Template.Footer>
+		</Template>
 	);
 };
 

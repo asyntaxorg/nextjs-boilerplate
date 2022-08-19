@@ -10,7 +10,7 @@ import {
 } from '@components';
 import { HTML_TAGS } from '@constants/components';
 import React from 'react';
-import stylesheet from './style.module.scss';
+import stylesheet from './stylesheet.module.scss';
 
 type Props = {
 	children: ChildrenType;
@@ -67,22 +67,36 @@ const Default: React.FC<Props & ComponentProps> & SubComponents = ({
 	classNames,
 }): any => (
 	<Element
-		className={[]}
+		className={[
+			stylesheet.root
+		]}
 	>
 		{/* REGION: HEADER */}
 		<Region
+			className={[stylesheet.header, stylesheet.column]}
 			name={REGIONS.HEADER}
 			reference={children}
 			tag={HTML_TAGS.HEADER}
 		/>
-		{/* REGION: MAIN */}
-		<Region
-			name={REGIONS.MAIN}
-			reference={children}
-			tag={HTML_TAGS.MAIN}
-		/>
+		<div className={stylesheet.row}>
+			{/* REGION: ASIDE */}
+			<Region
+				className={[stylesheet.aside, stylesheet.column]}
+				name={REGIONS.ASIDE}
+				reference={children}
+				tag={HTML_TAGS.ASIDE}
+			/>
+			{/* REGION: MAIN */}
+			<Region
+				className={[stylesheet.main, stylesheet.column]}
+				name={REGIONS.MAIN}
+				reference={children}
+				tag={HTML_TAGS.MAIN}
+			/>
+		</div>
 		{/* REGION: FOOTER */}
 		<Region
+			className={[stylesheet.footer, stylesheet.column]}
 			name={REGIONS.FOOTER}
 			reference={children}
 			tag={HTML_TAGS.FOOTER}

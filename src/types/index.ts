@@ -13,7 +13,7 @@ import React, {
 
 export type NestedArrayType<T> = Array<T> | Array<NestedArrayType<T>>;
 
-export type ClassNameType = string;
+export type ClassNameType = string | Array<string>;
 
 export type ClickEventType = MouseEventHandler<HTMLButtonElement> | (() => void);
 
