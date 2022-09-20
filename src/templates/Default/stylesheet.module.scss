@@ -1,0 +1,34 @@
+.root {
+	width: 100%;
+	height: auto;
+}
+
+.header {
+	background-color: blueviolet;
+}
+
+.row {
+	display: flex;
+	flex-wrap: wrap;
+}
+
+.column {
+	padding: 3.2rem;
+}
+
+.aside {
+	background-color: green;
+	flex: none;
+	width: 32rem;
+}
+.main {
+	background-color: goldenrod;
+	flex: 1;
+	min-height: 48rem;
+}
+
+.footer {
+	width: 100%;
+	background-color: black;
+	color: white;
+}
